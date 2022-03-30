@@ -1,9 +1,12 @@
 package com.stepDefinition;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -41,7 +44,10 @@ public class LoginSteps {
 			  public void user_enters_the_valid_username_and_password(String uname, String pwd) {
 			  System.out.println("Step2: user enters UserName and Password");
 			  driver.findElement(By.id("txtUsername")).sendKeys(uname);
-			  driver.findElement(By.id("txtPassword")).sendKeys(pwd); }
+			  driver.findElement(By.id("txtPassword")).sendKeys(pwd); 
+			  }
+
+
 
 	@And("user click on signIn button")
 	public void user_click_on_sign_in_button() {
@@ -55,4 +61,13 @@ public class LoginSteps {
 	   driver.close();
 	   
 	}
-}
+	
+	@When("user enters the credentials using DataTable")
+	public void user_enters_the_credentials_using_data_table(DataTable dataTable) {
+		 System.out.println("Step2: user enters UserName and Password");
+		 List<List<String>> data=dataTable.cells();
+		  driver.findElement(By.id("txtUsername")).sendKeys(data.get(0).get(0));
+		  driver.findElement(By.id("txtPassword")).sendKeys(data.get(0).get(1)); 
+		  }
+	}
+
