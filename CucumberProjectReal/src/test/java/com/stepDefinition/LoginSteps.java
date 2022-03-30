@@ -21,13 +21,27 @@ public class LoginSteps {
 	   driver.get("https://opensource-demo.orangehrmlive.com/");
 	}
 
-	
-	  @When("user enters the valid username and password") public void
-	  user_enters_the_valid_username_and_password() {
-	  System.out.println("Step2: user enters UserName and Password");
-	  driver.findElement(By.id("txtUsername")).sendKeys("Admin");
-	  driver.findElement(By.id("txtPassword")).sendKeys("admin123"); }
-	 
+	/*
+	 * @When("user enters the username and password") public void
+	 * user_enters_the_valid_username_and_password() {
+	 * System.out.println("Step2: user enters UserName and Password");
+	 * driver.findElement(By.id("txtUsername")).sendKeys("admin");
+	 * driver.findElement(By.id("txtPassword")).sendKeys("admin@123"); }
+	 */
+
+	/*
+	 * @When("^user enters the \"(.*)\" and \"(.*)\"$") public void
+	 * user_enters_the_valid_username_and_password(String uname, String pwd) {
+	 * System.out.println("Step2: user enters UserName and Password");
+	 * driver.findElement(By.id("txtUsername")).sendKeys(uname);
+	 * driver.findElement(By.id("txtPassword")).sendKeys(pwd); }
+	 */
+	  
+	@When("user enters the (.*) and (.*)$") 
+			  public void user_enters_the_valid_username_and_password(String uname, String pwd) {
+			  System.out.println("Step2: user enters UserName and Password");
+			  driver.findElement(By.id("txtUsername")).sendKeys(uname);
+			  driver.findElement(By.id("txtPassword")).sendKeys(pwd); }
 
 	@And("user click on signIn button")
 	public void user_click_on_sign_in_button() {
